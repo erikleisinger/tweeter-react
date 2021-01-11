@@ -15,7 +15,8 @@ function App() {
   const [ state, setState] = useState({
     new_tweet: false,
     characterCount: 140,
-    tweets: []
+    tweets: [],
+    retweets: []
   });
 
   useEffect(() => {
@@ -23,8 +24,9 @@ function App() {
       axios
       .get('http://localhost:3060/api/tweeter')
       .then((data) => {
-        console.log(data)
-        setState({...state, tweets: data.data.properties})
+        const tweets = data.data.tweets;
+        const retweets = data.data.retweets;
+        setState({...state, tweets, retweets})
       }).catch((err) => {
         console.log(err)
       })
@@ -59,7 +61,7 @@ function App() {
           characters={state.characterCount}
           />}
           
-          <TweetList tweets={state.tweets} />
+          <TweetList tweets={state.tweets} retweets={state.retweets} />
         </main>
         <footer>Copyright TweeterCorp</footer>
         <div className="arrowToTop">

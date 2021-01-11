@@ -6,8 +6,6 @@ import "../styles/Tweet_Buttons.scss";
 
 const classNames = require('classnames')
 
-
-
 export default function Like_Button(props) {
 
   const className = classNames({

@@ -10,3 +10,11 @@ CURRENT_TIMESTAMP),
 (2, 
 'Je pense , donc je suis',
 CURRENT_TIMESTAMP);
+
+INSERT INTO likes (tweet_id, user_id)
+VALUES(1, 2),
+(2, 1);
+
+INSERT INTO retweets (tweet_id, retweeter_id, created_at)
+VALUES(1, 2, CURRENT_TIMESTAMP),
+(2, 1, CURRENT_TIMESTAMP);

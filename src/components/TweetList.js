@@ -4,9 +4,10 @@ import Tweet from "./Tweet";
 
 export default function TweetList (props) {
 
-  const tweets = [...props.tweets];
+  const rawTweets = [...props.tweets];
+  const rawRetweets = [...props.retweets]
 
-  const allTweets = tweets.map((tweet) => {
+  const tweets = rawTweets.map((tweet) => {
     return <Tweet
       key={tweet.id}
       name={tweet.name}
@@ -22,7 +23,7 @@ export default function TweetList (props) {
     <section 
     
     className="tweets-container">
-      <ul role="tweets-container" >{allTweets}</ul>
+      <ul role="tweets-container" >{tweets}</ul>
     </section>
   )
 
