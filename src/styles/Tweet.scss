@@ -2,6 +2,15 @@ article.tweet {
   border: 5px solid #545149;
   margin-top: 1em;
   padding: 1em;
+
+  .user {
+    display: flex;
+    align-items: center;
+
+    span {
+      margin-left: 0.5em;
+    }
+  }
 }
 
 article.tweet:hover {

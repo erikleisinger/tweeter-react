@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Moment from "react-moment";
 
 import Tweet_Buttons from "./Tweet_Buttons"
 
@@ -18,7 +19,7 @@ export default function Tweet(props) {
       </header>
       <p>{props.text}</p>
       <footer>
-        <div>Posted: {props.date}</div>
+        <div>Posted: <Moment fromNow>{props.date}</Moment></div>
         <Tweet_Buttons likes={props.likes}/>
       </footer>
     </article>

@@ -11,7 +11,9 @@ pool.connect;
 module.exports = {
   getTweets: function () {
     const tweets = pool.query(`
-      SELECT * FROM tweets;
+      SELECT tweets.*, users.name, users.handle, users.avatar
+      FROM tweets
+      JOIN users ON users.id = tweets.user_id;
     `).then((data) => {
       return data.rows
     });
