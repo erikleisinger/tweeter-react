@@ -11,7 +11,7 @@ export default function Tweet_Buttons (props) {
           <Like_Button 
             likes={props.likes}
           />
-          <Retweet_Button />
+          <Retweet_Button retweets={props.retweets}/>
          <Flag_Button />
         </div>
   )

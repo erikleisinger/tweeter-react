@@ -4,9 +4,6 @@ article.tweet {
   padding: 1em;
 
   .user {
-    display: flex;
-    align-items: center;
-
     span {
       margin-left: 0.5em;
     }
@@ -55,6 +52,11 @@ article.tweet header {
   color: gray;
   width: 100%;
   margin-left: 0;
+
+  div {
+    display: flex;
+    align-items: center;
+  }
 }
 
 article.tweet p {

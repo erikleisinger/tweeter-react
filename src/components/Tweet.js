@@ -21,8 +21,8 @@ export default function Tweet(props) {
       </header>
       <p>{props.text}</p>
       <footer>
-        <div>Posted:<Moment >{props.date}</Moment></div>
-        <Tweet_Buttons likes={props.likes}/>
+        <div>Posted:<Moment fromNow>{props.date}</Moment></div>
+        <Tweet_Buttons likes={props.likes} retweets={props.retweets}/>
       </footer>
     </article>
   )

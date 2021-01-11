@@ -5,6 +5,7 @@ import { storiesOf } from "@storybook/react";
 import Tweet from "../components/Tweet";
 import Tweet_Buttons from "../components/Tweet_Buttons";
 import Like_Button from "../components/Like_Button";
+import Retweet_Button from "../components/Retweet_Button";
 import Counter from "../components/Counter"
 
 const tweetInfo = require('./story_data')
@@ -36,6 +37,10 @@ storiesOf("Tweet_Buttons", module)
   storiesOf("Like_Button", module)
   .add("Base", () => <Like_Button likes="10"></Like_Button>)
   .add("Clicked", () => <Like_Button likes="10" selected="true"></Like_Button>)
+
+  storiesOf("Retweet_Button", module)
+  .add("Base", () => <Retweet_Button retweets="10"></Retweet_Button>)
+  .add("Clicked", () => <Retweet_Button retweets="10" selected="true"></Retweet_Button>)
 
   storiesOf("Counter", module)
     .add("Base", () => <Counter characters="130"/>)
