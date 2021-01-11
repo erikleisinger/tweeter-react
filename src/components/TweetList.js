@@ -19,11 +19,31 @@ export default function TweetList (props) {
     />
   });
 
+  const retweets = rawRetweets.map((retweet) => {
+    return <Tweet
+    retweet={true}
+    key={retweet.id}
+    name={retweet.op_name}
+    handle={retweet.op_handle}
+    avatar={retweet.op_avatar}
+    text={retweet.tweet_text}
+    date={retweet.created_at}
+    likes={retweet.likes}
+    rt_name={retweet.rt_name}
+    rt_handle={retweet.rt_handle}
+    />
+  })
+
+  const allTweets = tweets.concat(retweets).sort((a, b) => {
+    return Date.parse(b.props.date) - Date.parse(a.props.date)
+  })
+  console.log(allTweets)
+
   return (
     <section 
     
     className="tweets-container">
-      <ul role="tweets-container" >{tweets}</ul>
+      <ul role="tweets-container" >{allTweets}</ul>
     </section>
   )
 

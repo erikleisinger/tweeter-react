@@ -25,7 +25,8 @@ module.exports = {
     op.avatar AS op_avatar, 
     tweets.tweet_text, 
     rt.name AS rt_name, 
-    rt.handle AS rt_handle
+    rt.handle AS rt_handle,
+    retweets.created_at
     FROM retweets
     JOIN tweets ON tweets.id = retweets.tweet_id
     JOIN users op ON op.id = tweets.user_id
