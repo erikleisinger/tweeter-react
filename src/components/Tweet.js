@@ -19,7 +19,7 @@ export default function Tweet(props) {
       </header>
       <p>{props.text}</p>
       <footer>
-        <div>Posted: <Moment fromNow>{props.date}</Moment></div>
+        <div>Posted:<Moment fromNow>{props.date}</Moment></div>
         <Tweet_Buttons likes={props.likes}/>
       </footer>
     </article>

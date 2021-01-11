@@ -3,14 +3,20 @@ article.tweet {
   margin-top: 1em;
   padding: 1em;
 
-  .user {
+  div {
     display: flex;
     align-items: center;
 
     span {
       margin-left: 0.5em;
     }
+
+    &.handle {
+      font-size: 0.8em;
+    }
   }
+
+
 }
 
 article.tweet:hover {
