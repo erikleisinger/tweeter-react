@@ -7,12 +7,12 @@ const classNames = require('classnames')
 export default function Counter(props) {
   
   const counterClass = classNames({
-    'exceeded': props.characters < 0
+    'exceeded': props.characters > 140
   })
 
   return (
     <div className={counterClass}>
-      {props.characters < 0 && <span id="charactersExceeded"> Character limit exceeded</span>}
+      {props.characters > 140 && <span id="charactersExceeded"> Character limit exceeded</span>}
       <output name="counter" class="counter" for="tweet-text">
         {props.characters}
       </output>
