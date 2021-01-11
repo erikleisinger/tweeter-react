@@ -1,0 +1,53 @@
+.tweet-button {
+  border: none;
+  outline: none;
+  background-color: none;
+
+  &.unclicked {
+    color: #4056A1;
+
+    &:hover {
+      color: #FF3C38;
+    }
+  }
+  &.clicked {
+    color: #FF3C38;
+    -webkit-animation: click 1s;
+            animation: click 1s;
+  }
+  }
+
+.likes {
+  margin-left: 0.4em;
+}
+  
+
+.tweet-buttons {
+  margin-right: 1em;
+}
+
+.tweet-buttons .retweets {
+  color: #4056A1;
+}
+
+.tweet-buttons button {
+  
+}
+
+.tweet-buttons button i {
+  margin-left: 0.7em;
+  color: inherit;
+  background-color: none;
+}
+
+
+
+.tweet-buttons button span {
+  color: #FF3C38;
+}
+
+.tweet-button-clicked {
+ 
+}
+
+
