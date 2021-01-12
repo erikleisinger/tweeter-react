@@ -67,6 +67,38 @@ module.exports = {
     .then((res) => {
       return res.rows;
     })
+  },
+
+  // user_id '3' is a placeholder for a generic user. 
+  // post requests for specific user ids could easily be implemented with a login/register system
+  // for now, it's outside scope of this project -- long live user #3!
+  retweet: function(id, callback) {
+    pool.query(`
+      INSERT INTO retweets(tweet_id, retweeter_id, created_at)
+      VALUES(
+        $1, 3, CURRENT_TIMESTAMP
+      )
+    `,[id])
+    .then((res) => {
+     callback (null, res)
+    })
+    .catch((err) => {
+      callback(err, null)
+    })
+  },
+
+  newTweet: async function (text, callback) {
+    pool.query(`
+    INSERT INTO tweets(user_id, tweet_text, date_posted)
+    VALUES(3, $1, CURRENT_TIMESTAMP)
+    RETURNING *;
+  `, [text])
+  .then((response) => {
+    return callback(null, response)
+  })
+  .catch((err) => {
+    return callback(err, null)
+  })
   }
 
 };

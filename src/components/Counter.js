@@ -5,14 +5,14 @@ import "../styles/Counter.scss"
 const classNames = require('classnames')
 
 export default function Counter(props) {
-  
+    console.log(props.characters)
   const counterClass = classNames({
-    'exceeded': props.characters > 140
+    'exceeded': props.characters < 0
   })
 
   return (
     <div className={counterClass}>
-      {props.characters > 140 && <span id="charactersExceeded"> Character limit exceeded</span>}
+      {props.characters < 0 && <span id="charactersExceeded"> Character limit exceeded</span>}
       <output name="counter" class="counter" for="tweet-text">
         {props.characters}
       </output>

@@ -15,7 +15,8 @@ function App() {
   const [ state, setState] = useState({
     new_tweet: false,
     characterCount: 140,
-    tweets: []
+    tweets: [],
+    refresh: false
   });
 
   useEffect(() => {
@@ -27,7 +28,11 @@ function App() {
       }).catch((err) => {
         console.log(err)
       })
-    },[]);
+    },[state.refresh]);
+
+    function refreshPage () {
+      setState({...state, refresh: !state.refresh})
+    }
 
   function writeNewTweet () {
     setState({...state, new_tweet: true})
@@ -56,9 +61,10 @@ function App() {
           closeNewTweet={closeNewTweet}
           onTextEntry={tweetText}
           characters={state.characterCount}
+          refresh={refreshPage}
           />}
           
-          <TweetList tweets={state.tweets}/>
+          <TweetList tweets={state.tweets} refresh={refreshPage}/>
         </main>
         <footer>Copyright TweeterCorp</footer>
         <div className="arrowToTop">

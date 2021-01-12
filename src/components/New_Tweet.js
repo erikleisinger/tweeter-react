@@ -1,4 +1,6 @@
-import React from "react";
+import React from "react"
+import {useState, useEffect} from 'react';
+import axios from 'axios'
 
 import "../styles/new-tweet.scss";
 import Counter from "./Counter"
@@ -7,15 +9,42 @@ const classNames = require('classnames')
 
 export default function New_Tweet (props) {
 
+  const [error, setError] = useState(null)
+
   const showHide = classNames({
     "new-tweet": true,
     "hidden": props.closed
   })
 
+  const errorClass = classNames({
+    "error": true,
+    "hidden": !error
+  })
+ 
+  function submitTweet(e) {
+    e.preventDefault();
+    const text = {'text': e.target[0].value};
+    if (text.text.length < 2) {
+      setError('That tweet\'s too short, Mary')
+    } else {
+
+    axios.post('http://localhost:3060/api/tweets', text)
+    .then((res) => {
+      console.log('submitting...')
+      props.refresh()
+      e.target[0].value = '';
+      props.closed = true;
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+  }
+
 
   return (
     <section class={showHide}>
-            <div className="error"></div>
+            <div className={errorClass}>{error}</div>
             <header>
               <span>
                 <h2>Compose Tweet</h2>
@@ -24,7 +53,7 @@ export default function New_Tweet (props) {
                 <h3>x</h3>
               </span>
             </header>
-            <form action="/tweets" method="POST" id="submit-tweet">
+            <form id="submit-tweet" onSubmit={(e) => submitTweet(e)}>
               <textarea
                 name="text"
                 id="tweet-text"

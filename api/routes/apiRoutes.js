@@ -21,7 +21,7 @@ module.exports = function(router, database) {
     }); 
 
 
-    const tweets = await database.getTweets()
+    await database.getTweets()
     .then((data) => {
       const allTweets = data.tweets.concat(data.retweets);
       let tweetsWithLikes = allTweets.reduce((acc, current) => {
@@ -46,10 +46,6 @@ module.exports = function(router, database) {
 
       }, [])
 
-      const tweetsData = {
-
-      }
-
       res.send(tweetsWithLikesAndRetweets)
     })
     .catch(e => {
@@ -57,6 +53,31 @@ module.exports = function(router, database) {
     }); 
 
   });
+  router.post('/tweets', (req, res) => {
+    // '3' is a placeholder; if user accounts are added, '3' would correspond to a user's unique id
+    // database.newTweet(3)
+    const text = req.body.text;
 
+    database.newTweet(text, (err, response) => {
+      if (err) {
+        res.status(400).send()
+      } else {
+        res.send(response)
+      }
+    })
+   
+  })
+
+  router.post('/tweets/retweet/:id', (req, res) => {
+    const id = req.params.id;
+    
+   database.retweet(id, (err, response) => {
+    if (err) {
+      res.status(400).send()
+    } else {
+      res.send(response)
+    }
+   })
+  })
   return router;
 }
