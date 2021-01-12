@@ -1,7 +1,7 @@
 INSERT INTO users(name, avatar, handle)
 VALUES('Newton', 'https://i.imgur.com/73hZDYK.png', 'SirIsaac'),
 ('Descartes', 'https://i.imgur.com/nlhLi3I.png', 'rd'),
-('User_default', 'https://i.imgur.com/73hZDYK.png', 'def_user');
+('You', 'https://i.imgur.com/73hZDYK.png', 'your_account');
 
 INSERT INTO tweets(user_id, tweet_text, date_posted)
 VALUES(1,
