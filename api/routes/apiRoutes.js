@@ -2,7 +2,7 @@ const database = require('../database');
 
 module.exports = function(router, database) {
 
-  router.get('/tweeter', async (req, res) => {
+  router.get('/tweets', async (req, res) => {
 
     const likes = await database.getLikes()
     .then((data) => {
@@ -78,6 +78,50 @@ module.exports = function(router, database) {
       res.send(response)
     }
    })
+  })
+  router.post('/tweets/like/:id', (req, res) => {
+    console.log('likeeeee')
+    const tweet_id = req.params.id;
+    
+   database.likePost(tweet_id, (err, response) => {
+    if (err) {
+      res.status(400).send()
+    } else {
+      res.send(response)
+    }
+   })
+  })
+
+  router.delete('/users/:user_id/likes/:tweet_id', (req, res) => {
+   database.unlikePost(req.params.user_id, req.params.tweet_id, (err, response) => {
+    if (err) {
+      res.status(400).send()
+    } else {
+      res.send(response)
+    }
+   })
+  })
+
+  router.get('/users/:id/retweets', (req, res) => {
+    const user_id = req.params.id;
+
+    database.getUserRetweets(user_id, (err, response) => {
+      if (err) {
+        res.status(400).send()
+      } else {
+        res.send(response)
+      }
+    })
+  })
+  router.get('/users/:id/likes', (req, res) => {
+    const user_id = req.params.id;
+    database.getUserLikes(user_id, (err, response) => {
+      if (err) {
+        res.status(400).send()
+      } else {
+        res.send(response)
+      }
+    })
   })
   return router;
 }

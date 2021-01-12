@@ -69,9 +69,52 @@ module.exports = {
     })
   },
 
-  // user_id '3' is a placeholder for a generic user. 
-  // post requests for specific user ids could easily be implemented with a login/register system
-  // for now, it's outside scope of this project -- long live user #3!
+  getUserRetweets: function(id, callback) {
+    return pool.query(`
+      SELECT tweet_id
+      FROM retweets
+      WHERE retweeter_id = $1;
+    `, [id])
+    .then((res) => {
+      const retweets = res.rows;
+      if (!Array.isArray(retweets) || !retweets.length) {
+        callback(null, retweets)
+      } else {
+        const retweets_array = retweets.map((tweet) => {
+          return tweet.tweet_id;
+        })
+        callback(null, retweets_array)
+      }
+    })
+    .catch((err) => {
+      callback(err, null)
+    })
+  },
+
+  getUserLikes: function(id, callback) {
+    return pool.query(`
+      SELECT tweet_id
+      FROM likes
+      WHERE user_id = $1;
+    `, [id])
+    .then((res) => {
+      const likes = res.rows;
+      console.log(likes)
+      if (!Array.isArray(likes) || !likes.length) {
+        callback(null, likes)
+      } else {
+        const likes_array = likes.map((tweet) => {
+          return tweet.tweet_id;
+        })
+        callback(null, likes_array)
+      }
+    })
+    .catch((err) => {
+      callback(err, null)
+    })
+  },
+
+
   retweet: function(id, callback) {
     pool.query(`
       INSERT INTO retweets(tweet_id, retweeter_id, created_at)
@@ -85,6 +128,37 @@ module.exports = {
     .catch((err) => {
       callback(err, null)
     })
+  },
+
+  likePost: function (id, callback) {
+    pool.query(`
+    INSERT INTO likes(tweet_id, user_id)
+    VALUES(
+      $1, 3
+    )
+    RETURNING *;
+  `,[id])
+  .then((res) => {
+    console.log(res)
+   callback (null, res)
+  })
+  .catch((err) => {
+    callback(err, null)
+  })
+  },
+
+  unlikePost: function (user_id, tweet_id, callback) {
+    pool.query(`
+    DELETE FROM likes
+    WHERE user_id = $1
+    AND tweet_id = $2;
+  `,[user_id, tweet_id])
+  .then((res) => {
+   callback (null, res)
+  })
+  .catch((err) => {
+    callback(err, null)
+  })
   },
 
   newTweet: async function (text, callback) {

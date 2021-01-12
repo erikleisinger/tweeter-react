@@ -10,8 +10,8 @@ export default function Retweet_Button(props) {
 
   const className = classNames({
     "tweet-button": true, 
-    "clicked": props.selected,
-    "unclicked": !props.selected
+    "clicked": props.userRetweeted,
+    "unclicked": !props.userRetweeted
   })
 
   function retweet () {

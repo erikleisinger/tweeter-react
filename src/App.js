@@ -16,21 +16,51 @@ function App() {
     new_tweet: false,
     characterCount: 140,
     tweets: [],
+    user_retweets: [],
+    user_likes: [],
     refresh: false
   });
 
   useEffect(() => {
-    
-      axios
-      .get('http://localhost:3060/api/tweeter')
+
+      const tweets = axios
+      .get('http://localhost:3060/api/tweets')
       .then((data) => {
-        setState({...state, tweets: data.data})
+        const tweets = data.data
+        return tweets;
       }).catch((err) => {
         console.log(err)
+        return err;
       })
+
+      const retweets = axios
+      .get('http://localhost:3060/api/users/3/retweets')
+      .then((data) => {
+        const retweets = data.data;
+        return retweets;
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+
+      const likes = axios
+      .get('http://localhost:3060/api/users/3/likes')
+      .then((data) => {
+        const likes = data.data;
+        return likes;
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+
+      Promise.all([tweets, retweets, likes])
+      .then((data) => {
+        setState({...state, tweets: data[0], user_retweets: data[1], user_likes: data[2]})
+      })
+    
     },[state.refresh]);
 
-    function refreshPage () {
+  function refreshPage () {
       setState({...state, refresh: !state.refresh})
     }
 
@@ -64,7 +94,7 @@ function App() {
           refresh={refreshPage}
           />}
           
-          <TweetList tweets={state.tweets} refresh={refreshPage}/>
+          <TweetList tweets={state.tweets} user_retweets={state.user_retweets} refresh={refreshPage} user_likes={state.user_likes}/>
         </main>
         <footer>Copyright TweeterCorp</footer>
         <div className="arrowToTop">
