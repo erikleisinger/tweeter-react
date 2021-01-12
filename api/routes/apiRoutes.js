@@ -102,6 +102,18 @@ module.exports = function(router, database) {
    })
   })
 
+  router.delete('/tweets/retweets/:id', (req, res) => {
+    database.deleteRetweet(req.params.id,(err, response) => {
+     if (err) {
+       console.log(err)
+       res.status(400).send()
+     } else {
+       console.log('tweet deleted')
+       res.send(response)
+     }
+    })
+   })
+
   router.get('/users/:id/retweets', (req, res) => {
     const user_id = req.params.id;
 

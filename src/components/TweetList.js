@@ -18,6 +18,7 @@ export default function TweetList (props) {
       rt_handle={tweet.rt_handle || null}
       text={tweet.tweet_text}
       tweet_id={tweet.id}
+      retweet_id={tweet.retweet_id}
       userLiked={props.user_likes.some(ele => ele === tweet.id) && true}
       userRetweeted={props.user_retweets.some(ele => ele === tweet.id) && true}
     />

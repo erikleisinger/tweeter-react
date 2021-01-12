@@ -1,5 +1,7 @@
 .tweet-buttons {
   margin-right: 1em;
+  display: flex;
+  align-items: center;
 
   .tweet-button {
     border: none;

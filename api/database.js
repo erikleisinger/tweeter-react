@@ -161,6 +161,20 @@ module.exports = {
   })
   },
 
+  deleteRetweet: function (retweet_id, callback) {
+    console.log(retweet_id)
+    pool.query(`
+      DELETE FROM retweets
+      WHERE id = $1;   
+    `, [retweet_id])
+    .then((res) => {
+      callback (null, res)
+     })
+     .catch((err) => {
+       callback(err, null)
+     })
+  },
+
   newTweet: async function (text, callback) {
     pool.query(`
     INSERT INTO tweets(user_id, tweet_text, date_posted)
