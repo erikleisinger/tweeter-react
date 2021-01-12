@@ -42,7 +42,7 @@ export default function Like_Button(props) {
   return (
     <button className={className} onClick={() => likePost()}>
       <FontAwesomeIcon icon={faHeart} />
-      <span className="likes">{props.likes}</span>
+      <span>{props.likes}</span>
     </button>
   );
 }
