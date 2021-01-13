@@ -2,6 +2,8 @@ import React from "react"
 import {useState, useEffect} from 'react';
 import axios from 'axios'
 
+import { MdClose } from 'react-icons/md'
+
 
 import "../styles/new-tweet.scss";
 import Counter from "./Counter"
@@ -52,7 +54,7 @@ export default function New_Tweet (props) {
                 <h2>Compose Tweet</h2>
               </span>
               <span className="exitTweet" onClick={() => props.toggleNewTweet()}>
-                <h3>x</h3>
+                <MdClose></MdClose>
               </span>
             </header>
             <form id="submit-tweet" onSubmit={(e) => submitTweet(e)}>

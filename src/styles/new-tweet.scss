@@ -40,7 +40,11 @@
   margin-right: 1.5em;
   font-size: 1em;
   opacity: 0.5;
-  line-height: unset;
+  display: flex;
+  align-items: center;
+  svg:hover {
+      transform: scale(1.4)
+    }
 }
 
 .new-tweet form {

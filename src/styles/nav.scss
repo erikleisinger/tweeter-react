@@ -1,4 +1,6 @@
 @import 'fonts';
+@import '_colors';
+
 nav {
   position: fixed;
   top: 0;
@@ -44,7 +46,11 @@ nav span {
   -webkit-animation: bounce 1s infinite;
           animation: bounce 1s infinite;
   -webkit-transition: color 0.1s;
-  transition: color 0.1s;
+  transition: all 0.3s;
+  &:hover {
+    color:$tweeter-yellow;
+    height: 1.1em;
+  }
 }
 
 .fa-angle-double-down:hover {
