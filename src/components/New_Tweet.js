@@ -2,6 +2,7 @@ import React from "react"
 import {useState, useEffect} from 'react';
 import axios from 'axios'
 
+
 import "../styles/new-tweet.scss";
 import Counter from "./Counter"
 
@@ -12,8 +13,8 @@ export default function New_Tweet (props) {
   const [error, setError] = useState(null)
 
   const showHide = classNames({
-    "new-tweet": true,
-    "hidden": props.closed
+    "new-tweet": !props.closed,
+    "new-tweet-hidden": props.closed
   })
 
   const errorClass = classNames({
@@ -43,6 +44,7 @@ export default function New_Tweet (props) {
 
 
   return (
+    
     <section class={showHide}>
             <div className={errorClass}>{error}</div>
             <header>
@@ -66,5 +68,6 @@ export default function New_Tweet (props) {
               </div>
             </form>
           </section>
+          
   )
 }

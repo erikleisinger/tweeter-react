@@ -1,9 +1,26 @@
 
+.new-tweet {
+  height: 100%;
+  border: 5px solid #545149;
+  padding: 0.1em 0.7em 0.7em 0.7em;
+  flex-shrink: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+}
+
+.new-tweet-hidden {
+  display: none;
+  height: 0px;
+}
+
+
 
 .new-tweet header {
   background-color: inherit;
   background-image: unset;
-  height: 100px;
+  // height: 100px;
   width: 100%;
   margin: 0;
   display: -webkit-box;
@@ -16,6 +33,7 @@
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  flex-shrink: 1;
 }
 
 .exitTweet {
@@ -61,7 +79,7 @@ form div output {
 }
 
 .lower-bar > div {
-  dispay: flex;
+  display: flex;
   -webkit-box-pack: end;
   -ms-flex-pack: end;
   justify-content: flex-end;
@@ -87,11 +105,12 @@ form div output {
   margin: 0em 1em;
 }
 
-.hidden {
-  display: none;
-}
+
+
 
 .backgroundError {
   background-color: #ffcccb;
 }
 /*# sourceMappingURL=new-tweet.css.map */
+
+

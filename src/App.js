@@ -1,6 +1,7 @@
 
 import React, {useState, useEffect} from "react";
 import axios from "axios";
+import {useTransition, animated, useSpring} from 'react-spring'
 
 import "./styles/App.scss";
 import "./styles/Header.scss";
@@ -20,6 +21,8 @@ function App() {
     user_likes: [],
     refresh: false
   });
+
+  const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
 
@@ -77,6 +80,33 @@ function App() {
     setState({...state, characterCount: characters})
   }
 
+  const transitions = useTransition(state.new_tweet, null, {
+    from: {opacity: 0},
+    enter: {opacity: 1},
+    leave: {opacity: 0}
+  })
+
+  // const props = useSpring({
+  //   config: { duration: 5000}, 
+  //   opacity: state.new_tweet ? 1 : 0, 
+  //   display: state.new_tweet? 'block' : 'none',
+  
+  // })
+
+  const props = useSpring({ 
+    config: { duration: 500},
+    to: async (next, cancel) => {
+      if (state.new_tweet) {
+        await next({display: 'flex'})
+        await next({height: '200px'})
+      } else {
+        await next({height: '0px'})
+        await next({display: 'none'})
+      }
+    },
+    from: { height: '0px', display: 'none'}
+  })
+
   return (
     <body>
       <Nav 
@@ -87,13 +117,15 @@ function App() {
         <Header name="Erik" avatar="../../images/profile-hex.png"/>
 
         <main className="tweetsContainer">
-          {state.new_tweet && <New_Tweet 
+        <animated.div style={props}>
+          <New_Tweet 
+          className="example"
           closeNewTweet={closeNewTweet}
           onTextEntry={tweetText}
           characters={state.characterCount}
           refresh={refreshPage}
-          />}
-          
+          />
+          </animated.div>
           <TweetList tweets={state.tweets} user_retweets={state.user_retweets} refresh={refreshPage} user_likes={state.user_likes}/>
         </main>
         <footer>Copyright TweeterCorp</footer>
