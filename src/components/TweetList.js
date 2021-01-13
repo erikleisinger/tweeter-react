@@ -30,7 +30,7 @@ export default function TweetList (props) {
     <section 
     
     className="tweets-container">
-      <ul role="tweets-container" >{tweets}</ul>
+      {tweets}
     </section>
   )
 

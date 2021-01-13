@@ -3,17 +3,16 @@ import React from "react";
 import "../styles/nav.scss";
 import "../styles/fonts.scss";
 
-import { faAngleDoubleDown } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FaAngleDoubleDown, FaAngleDoubleUp } from 'react-icons/fa'
 
 export default function Nav(props) {
   return (
     <nav>
       <span>tweeter</span>
       <span>
-        <button type="button" className="newTweetButton" onClick={() => props.writeNewTweet()}>
+        <button type="button" className="newTweetButton" onClick={() => props.toggleNewTweet()}>
           <b>Write</b> a new tweet <br />
-          <FontAwesomeIcon icon={faAngleDoubleDown} />
+          {props.new_tweet ? <FaAngleDoubleUp className="downArrow" /> : <FaAngleDoubleDown className="downArrow" />}
         </button>
       </span>
     </nav>

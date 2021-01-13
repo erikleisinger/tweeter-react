@@ -51,7 +51,7 @@ export default function New_Tweet (props) {
               <span>
                 <h2>Compose Tweet</h2>
               </span>
-              <span className="exitTweet" onClick={() => props.closeNewTweet()}>
+              <span className="exitTweet" onClick={() => props.toggleNewTweet()}>
                 <h3>x</h3>
               </span>
             </header>

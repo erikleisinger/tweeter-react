@@ -67,14 +67,10 @@ function App() {
       setState({...state, refresh: !state.refresh})
     }
 
-  function writeNewTweet () {
-    setState({...state, new_tweet: true})
+  function toggleNewTweet () {
+    setState({...state, new_tweet: !state.new_tweet})
   }
 
-  function closeNewTweet () {
-    setState({...state, characterCount: 140, new_tweet: false})
-  }
-  
   function tweetText(chars) {
     const characters = 140 - chars.target.value.length;
     setState({...state, characterCount: characters})
@@ -94,7 +90,7 @@ function App() {
   // })
 
   const props = useSpring({ 
-    config: { duration: 500},
+    config: { duration: 300},
     to: async (next, cancel) => {
       if (state.new_tweet) {
         await next({display: 'flex'})
@@ -110,7 +106,8 @@ function App() {
   return (
     <body>
       <Nav 
-        writeNewTweet={writeNewTweet}
+        toggleNewTweet={toggleNewTweet}
+        new_tweet={state.new_tweet}
       />
       <div className="container">
         
@@ -120,7 +117,7 @@ function App() {
         <animated.div style={props}>
           <New_Tweet 
           className="example"
-          closeNewTweet={closeNewTweet}
+          toggleNewTweet={toggleNewTweet}
           onTextEntry={tweetText}
           characters={state.characterCount}
           refresh={refreshPage}
