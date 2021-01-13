@@ -4,6 +4,7 @@ import "../styles/nav.scss";
 import "../styles/fonts.scss";
 
 import { FaAngleDoubleDown, FaAngleDoubleUp } from 'react-icons/fa'
+import { BsPencilSquare } from 'react-icons/bs'
 
 export default function Nav(props) {
   return (
@@ -13,8 +14,10 @@ export default function Nav(props) {
         <button type="button" className="newTweetButton" onClick={() => props.toggleNewTweet()}>
           <b>Write</b> a new tweet <br />
           {props.new_tweet ? <FaAngleDoubleUp className="downArrow" /> : <FaAngleDoubleDown className="downArrow" />}
+          
         </button>
       </span>
+      <span><BsPencilSquare></BsPencilSquare></span>
     </nav>
   );
 }
