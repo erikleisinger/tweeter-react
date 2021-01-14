@@ -26,7 +26,7 @@ export default function Retweet_Button(props) {
 
   return (
     <button className={className} onClick={() => retweet()}>
-      <FaRetweet />
+      <FaRetweet/>
       <span>{props.retweets}</span>
     </button>
   );

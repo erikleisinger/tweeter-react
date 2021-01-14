@@ -3,6 +3,7 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import {useTransition, animated, useSpring} from 'react-spring'
 
+
 import "./styles/App.scss";
 import "./styles/Header.scss";
 import "./styles/nav.scss";
@@ -11,6 +12,8 @@ import Nav from "./components/Nav"
 import Header from "./components/Header"
 import New_Tweet from "./components/New_Tweet"
 import TweetList from "./components/TweetList"
+
+const classNames = require('classnames');
 
 function App() {
   const [ state, setState] = useState({
@@ -93,14 +96,18 @@ function App() {
     config: { duration: 300},
     to: async (next, cancel) => {
       if (state.new_tweet) {
-        await next({display: 'flex'})
         await next({height: '200px'})
       } else {
         await next({height: '0px'})
-        await next({display: 'none'})
       }
     },
-    from: { height: '0px', display: 'none'}
+    from: { height: '0px'}
+  })
+
+  const newTweetContainerClass = classNames({
+    'new-tweet-container': true,
+    'open': state.new_tweet,
+    'closed': !state.new_tweet
   })
 
   return (
@@ -111,10 +118,11 @@ function App() {
       />
       <div className="container">
         
-        <Header name="Erik" avatar="../../images/profile-hex.png"/>
+        <Header name="Your Account" avatar="../../images/profile-hex.png"/>
 
         <main className="tweetsContainer">
-        <animated.div style={props}>
+          <div className={newTweetContainerClass}>
+        <animated.div className='new-tweet-animation' style={props}>
           <New_Tweet 
           className="example"
           toggleNewTweet={toggleNewTweet}
@@ -123,6 +131,7 @@ function App() {
           refresh={refreshPage}
           />
           </animated.div>
+          </div>
           <TweetList tweets={state.tweets} user_retweets={state.user_retweets} refresh={refreshPage} user_likes={state.user_likes}/>
         </main>
         <footer>Copyright TweeterCorp</footer>

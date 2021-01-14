@@ -1,8 +1,7 @@
 .tweet-buttons {
-  margin-right: 1em;
   display: flex;
   align-items: center;
-  max-width: 40%;
+  flex-grow: 1;
 
 
   .tweet-button {
@@ -10,7 +9,6 @@
     outline: none;
     background-color: none;
     display: flex;
-    width: 25%;
 
     &.unclicked {
       color: #4056a1;
@@ -26,8 +24,24 @@
       animation: click 1s;
     }
 
+    svg {
+      height: 1.5em;
+      width: 1.5em;
+    }
+
     span {
       margin-left: 0.4em;
     }
   }
+}
+@media only screen and (max-width: 480px) {
+.tweet-buttons {
+  .tweet-button {
+    font-size: 4vw;
+    svg {
+      height: 3.5vw;
+      width: 3.5vw;
+    }
+  }
+}
 }

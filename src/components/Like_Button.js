@@ -1,8 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { AiFillHeart } from 'react-icons/ai'
 import "../styles/Tweet_Buttons.scss";
 
 const classNames = require('classnames')
@@ -41,7 +40,7 @@ export default function Like_Button(props) {
 
   return (
     <button className={className} onClick={() => likePost()}>
-      <FontAwesomeIcon icon={faHeart} />
+      <AiFillHeart/>
       <span>{props.likes}</span>
     </button>
   );
