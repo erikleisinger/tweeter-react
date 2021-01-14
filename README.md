@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+# Tweeter Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Tweeter is a simple, single-page Twitter clone built with ReactJS, Express, PostgresSQL and SASS.
 
-## Available Scripts
+## Getting Started
 
-In the project directory, you can run:
+1. Fork this repository, then clone your fork of this repository.
+2. Install dependencies using the `npm install` command.
+3. Create a new pSQL database and populate it with api/migrations/schema.sql and api/seeds.seeds.sql
+4. Configure api/server_files/pool.js with your database host/login/password info
+5. In the terminal, navigate to the /api folder and start the server with `npm start`. The app will be served at <http://localhost:3060/>.
+6. In the root folder, run `npm start` to start the React web app.
+7. Go to <http://localhost:3000/> in your browser.
+8. Enjoy!
 
-### `npm start`
+## Dependencies
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- ReactJS
+- Express
+- classnames
+- moment
+- axios
+- Node 5.10.x or above
+- node-sass
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Features:
 
-### `npm test`
+### **Responsive Design**
+ Tweeter's mostly-fluid visual design automatically scales to any size computer, tablet or smartphone screen. 
+!["responsive design"](https://github.com/erikleisinger/tweeter/raw/master/samples/responsive-design.gif
+)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### **Ease-of-Use**
+  It's easy and intuitive to create a new tweet, or to like, unlike, or retweet someone else's!
 
-### `npm run build`
+**"Back To Top" arrow** returns users to the top the page with the click of a button
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+!["arrow to top - small format"](https://github.com/erikleisinger/tweeter/raw/master/samples/arrow-to-top-small.gif
+)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Hide and Collapse the draft window**
+!["hide and show draft box"](https://github.com/erikleisinger/tweeter/raw/master/samples/hideandshow.gif
+)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Likes**! Users can show a tweet some love by pressing the heart beneath it
 
-### `npm run eject`
+!["likes"](https://github.com/erikleisinger/tweeter/raw/master/samples/likes.gif
+)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Retweet** Signal boost your favorite tweets
+!["retweet example"](https://github.com/erikleisinger/tweeter/raw/master/samples/retweet.gif
+)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Dynamic Error Messages**
+!["errors"](https://github.com/erikleisinger/tweeter/raw/master/samples/errors.gif
+)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

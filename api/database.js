@@ -1,11 +1,4 @@
-const { Pool } = require("pg");
-const pool = new Pool({
-  user: "postgres",
-  password: "postgres",
-  host: "localhost",
-  database: "tweeter_react",
-});
-
+const pool = require('./server_files/pool')
 pool.connect;
 
 module.exports = {

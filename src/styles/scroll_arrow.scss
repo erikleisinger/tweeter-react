@@ -1,0 +1,16 @@
+@import '_colors';
+
+.scrollArrow {
+  position: fixed;
+  bottom: 5vh;
+  right: 3vw;
+  opacity: 0.6;
+  color: $tweeter-purple;
+  margin-top: 100px;
+  &:hover {
+    color: $tweeter-orange;
+  }
+  &:active {
+    color: $tweeter-yellow;
+  }
+}

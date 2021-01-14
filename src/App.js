@@ -2,11 +2,13 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import {animated, useSpring} from 'react-spring'
+import { FaChevronCircleUp } from 'react-icons/fa'
 
 
 import "./styles/App.scss";
 import "./styles/Header.scss";
 import "./styles/nav.scss";
+import "./styles/scroll_arrow.scss"
 
 import Nav from "./components/Nav"
 import Header from "./components/Header"
@@ -22,10 +24,31 @@ function App() {
     tweets: [],
     user_retweets: [],
     user_likes: [],
-    refresh: false
+    refresh: false,
+    scrollArrow: false
   });
 
   const [error, setError] = useState(null)
+
+  function scrollToTop () {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+  }
+
+  useEffect(() => {
+    const onScroll = e => {
+      const scrollPosition = e.target.documentElement.scrollTop;
+
+      if (scrollPosition > 400 && !state.scrollArrow) {
+        setState({...state, scrollArrow: true})
+      } else if (scrollPosition < 400 && state.scrollArrow){
+        setState({...state, scrollArrow: false})
+      }
+    };
+    window.addEventListener("scroll", onScroll);
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [state.scrollArrow]);
 
   useEffect(() => {
 
@@ -76,6 +99,10 @@ function App() {
       setError(null)
     }
 
+    if (state.scrollArrow) {
+      scrollToTop();
+    }
+
   }
 
   function tweetText(chars) {
@@ -99,6 +126,7 @@ function App() {
     'open': state.new_tweet,
     'closed': !state.new_tweet
   })
+
 
   const errorClass = classNames({
     "error": true,
@@ -132,11 +160,12 @@ function App() {
           </animated.div>
           </div>
           <TweetList tweets={state.tweets} user_retweets={state.user_retweets} refresh={refreshPage} user_likes={state.user_likes}/>
+
         </main>
         <footer>Copyright TweeterCorp</footer>
-        <div className="arrowToTop">
-          <i className="fas fa-chevron-circle-up"></i>
-        </div>
+        {state.scrollArrow && <div className="scrollArrow" onClick={() => scrollToTop()}>
+          <FaChevronCircleUp size="2em"/>
+        </div>}
       </div>
     </body>
   );
