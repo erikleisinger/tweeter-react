@@ -21,6 +21,7 @@ export default function TweetList (props) {
       retweet_id={tweet.retweet_id}
       userLiked={props.user_likes.some(ele => ele === tweet.id) && true}
       userRetweeted={props.user_retweets.some(ele => ele === tweet.id) && true}
+      userTweeted={props.tweets.some(ele => ele.user_id === 3)}
     />
   }).sort((a, b) => {
       return Date.parse(b.props.date) - Date.parse(a.props.date)

@@ -12,31 +12,20 @@ const classNames = require('classnames')
 
 export default function New_Tweet (props) {
 
-  const [error, setError] = useState(null)
-
-  const showHide = classNames({
-    "new-tweet": !props.closed,
-    "new-tweet-hidden": props.closed
-  })
-
-  const errorClass = classNames({
-    "error": true,
-    "hidden": !error
-  })
+ 
  
   function submitTweet(e) {
     e.preventDefault();
     const text = {'text': e.target[0].value};
     if (text.text.length < 2) {
-      setError('That tweet\'s too short, Mary')
+      props.setError('That tweet\'s too short, Mary')
     } else {
 
     axios.post('http://localhost:3060/api/tweets', text)
     .then((res) => {
-      console.log('submitting...')
       props.refresh()
       e.target[0].value = '';
-      props.closed = true;
+      props.setError(null)
     })
     .catch((err) => {
       console.log(err)
@@ -47,8 +36,8 @@ export default function New_Tweet (props) {
 
   return (
     
-    <section class={showHide}>
-            <div className={errorClass}>{error}</div>
+    <section class="new-tweet">
+            
             <header>
               <span>
                 <h2>Compose Tweet</h2>

@@ -174,6 +174,19 @@ module.exports = {
        callback(err, null)
      })
   },
+  deleteTweet: function (tweet_id, callback) {
+    pool.query(`
+      DELETE FROM tweets
+      WHERE id = $1;   
+    `, [tweet_id])
+    .then((res) => {
+      callback (null, res)
+     })
+     .catch((err) => {
+       callback(err, null)
+     })
+  },
+
 
   newTweet: async function (text, callback) {
     pool.query(`

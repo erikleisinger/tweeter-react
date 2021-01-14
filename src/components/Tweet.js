@@ -12,6 +12,8 @@ export default function Tweet(props) {
   const [state, setState] = useState('tweet');
 
   function deleteTweet() {
+
+    if (props.retweet_id) {
     axios
     .delete(`http://localhost:3060/api/tweets/retweets/${props.retweet_id}`)
     .then((res) => {
@@ -24,6 +26,20 @@ export default function Tweet(props) {
     .catch((err) => {
       console.log(err)
     })
+  } else {
+    axios
+    .delete(`http://localhost:3060/api/tweets/${props.tweet_id}`)
+    .then((res) => {
+      props.refresh()
+      setState('deleted')
+      setTimeout(() => {
+        setState('tweet')
+      }, 2000)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
   }
   
   return (
@@ -41,7 +57,7 @@ export default function Tweet(props) {
       <p>{props.text}</p>
       <footer>
         <div>Posted <Moment fromNow>{props.date}</Moment></div>
-        <Tweet_Buttons likes={props.likes} retweets={props.retweets} tweet_id={props.tweet_id} refresh={props.refresh} userRetweeted={props.userRetweeted} userLiked={props.userLiked} setState={setState}/>
+        <Tweet_Buttons likes={props.likes} retweets={props.retweets} tweet_id={props.tweet_id} refresh={props.refresh} userRetweeted={props.userRetweeted} userTweeted={props.userTweeted} userLiked={props.userLiked} setState={setState}/>
       </footer>
       </article>
     )}

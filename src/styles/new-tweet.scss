@@ -14,7 +14,6 @@
 
 .new-tweet {
   height: 100%;
-
   padding: 0.1em 1em 1em 1em;
   flex-shrink: 1;
   display: flex;
@@ -106,8 +105,9 @@ form div output {
 
 
 .error {
-  margin-top: 0.5em;
-  width: 100%;
+  margin: auto;
+  margin-bottom: 1em;
+  width: 90%;
   height: 75px;
   line-height: 60px;
   text-align: center;
